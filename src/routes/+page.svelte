@@ -1,5 +1,6 @@
 <script lang="ts">
   import { invoke } from "@tauri-apps/api/core";
+    import LineItem from "../components/LineItem.svelte";
 
   let name = $state("");
   let greetMsg = $state("");
@@ -33,33 +34,34 @@
       <p class="quote_header_option_label">GPO Name:</p>
       <input id="gpo_name" class="quote_header_option_input"/>
     </div>
-    <!-- <div class="quote_header_col2">
+    <div class="quote_header_col2">
       <p class="quote_header_option_label">Quote No:</p>
       <div class="quote_header_option_quoted_number">
         <input id="quote_no" class="quote_header_option_input"/>
+        <p>Rev No.</p>
         <input id="quoted_no_rev" class="quote_header_option_input"/>
       </div>
-      <p class="quote_header_option_label">Attn:</p>
-      <input id="attn" class="quote_header_option_input"/>
-      <p class="quote_header_option_label">Project:</p>
-      <input id="project" class="quote_header_option_input"/>
-      <p class="quote_header_option_label">Specifier:</p>
-      <input id="specifier" class="quote_header_option_input"/>
-      <p class="quote_header_option_label">POC:</p>
-      <input id="poc" class="quote_header_option_input"/>
-      <p class="quote_header_option_label">GPO Name:</p>
-      <input id="gpo_name" class="quote_header_option_input"/>
-    </div> -->
+      <p class="quote_header_option_label">Freight:</p>
+      <input id="freight" class="quote_header_option_input"/>
+      <p class="quote_header_option_label">Factory:</p>
+      <input id="factory" class="quote_header_option_input"/>
+      <p class="quote_header_option_label">Dir Discont:</p>
+      <input id="dir_discount" class="quote_header_option_input"/>
+      <p class="quote_header_option_label">GPO Member Discount:</p>
+      <input id="gpo_member_discount" class="quote_header_option_input"/>
+      <p class="quote_header_option_label">Price Hold:</p>
+      <input id="price_hold" class="quote_header_option_input"/>
+      <p class="quote_header_option_label">Prepared By:</p>
+      <input id="prepared_by" class="quote_header_option_input"/>
+    </div>
     <!-- <p class="quote_header_option_label">Quoted To:</p>
     <input class="quote_header_option_input"/>
     <p class="quote_header_option_label">Quoted To:</p>
     <input class="quote_header_option_input"/> -->
   </div>
-  <!-- <form class="row" onsubmit={greet}>
-    <input id="greet-input" placeholder="Enter a name..." bind:value={name} />
-    <button type="submit">Greet</button>
-  </form>
-  <p>{greetMsg}</p> -->
+  <div class="line_items">
+    <LineItem></LineItem>
+  </div>
 </main>
 
 <style>
@@ -72,38 +74,41 @@
 }
 
 .quote_header {
-  display: grid;
-  grid-template-columns: [col1] 33% [col2] 33% [col3] 33%;
-  grid-template-rows: [row1] 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 .quote_header_col1 {
     display: grid;
     gap: 5px;
-    grid-template-columns: [col1] 50% [col2] 50%;
+    grid-template-columns: [col1] auto [col2] auto;
+    /* width: 50%; */
 }
 
 .quote_header_col2 {
     display: grid;
     gap: 5px;
-    grid-template-columns: [col1] 50% [col2] 50%;
+    grid-template-columns: [col1] auto [col2] auto;
 }
 
 .quote_header_option_label {
   padding-right: 5px;
   padding-left: 5px;
   align-self: center;
+  justify-self: left;
+  padding-left: 10px;
+  white-space: nowrap;
 }
 
 .quote_header_option_quoted_to {
   display: grid;
   gap: 2px;
-  grid-template-columns: [col1] 40% [col2] 20% [col3] 20% [col4] 20%;
-  grid-template-rows: [row1] 50% [row2] 50%; 
+  grid-template-columns: [col1] 2fr [col2] 1fr [col3] 0.5fr [col4] 1fr;
+  grid-template-rows: [row1] 1fr [row2] 1fr; 
 }
 
 .quote_header_option_input {
-  border-radius: 4px;
+  /* border-radius: 4px; */
   border: 1px solid transparent;
   padding: 0.1em;
   padding-left: 5px;
@@ -112,12 +117,24 @@
   color: #0f0f0f;
   background-color: #ffffff;
   transition: border-color 0.25s;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+  /* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); */
 }
 
 .quote_header_option_quoted_number {
-  grid-template-rows: [row1] 50% [row2] 50%; 
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 }
+
+/* #quote_no {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+#quoted_no_rev {
+
+} */
 
 #quoted_to_name {
   grid-column-start: 1;
@@ -136,6 +153,9 @@
 
 }
 
+p {
+  font-size: 8pt;
+}
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -177,7 +197,7 @@
 
 
 
-/* input,
+/*input,
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -189,10 +209,11 @@ button {
   background-color: #ffffff;
   transition: border-color 0.25s;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-} */
+}*/
 
 button {
   cursor: pointer;
+  /* font-size: 8pt; */
 }
 
 button:hover {
