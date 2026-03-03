@@ -73,6 +73,11 @@
   filter: drop-shadow(0 0 2em #ff3e00);
 }
 
+.line_items {
+  margin-top: 20px;
+  padding-left: 10px;
+}
+
 .quote_header {
   display: flex;
   flex-direction: row;
